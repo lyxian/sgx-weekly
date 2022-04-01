@@ -13,15 +13,22 @@ end = pendulum.today()
 start = end.subtract(days=450)
 # start = end.subtract(days=30)
 
-if FILENAME not in os.listdir():
+def saveHTML():
     url = 'https://sginvestors.io/market/sgx-weekly-top-turnover-institutions-retailers-buy-sell/'
     response = requests.get(url)
     with open('weekly.html', 'w') as file:
         file.write(response.text)
-    content = response.text
+    return response.text
+
+if FILENAME not in os.listdir():
+    content = saveHTML()
 else:
-    with open('weekly.html', 'r') as file:
-        content = file.read()
+    ans = input('Overwrite weekly.html? (y/n) ')
+    if ans in ['y', 'Y']:
+        content = saveHTML()
+    else:
+        with open('weekly.html', 'r') as file:
+            content = file.read()
 
 soup = BeautifulSoup(content, 'html.parser')
 
