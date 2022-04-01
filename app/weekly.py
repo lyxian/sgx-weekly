@@ -13,34 +13,18 @@ end = pendulum.today()
 start = end.subtract(days=450)
 # start = end.subtract(days=30)
 
-def saveHTML():
-    url = 'https://sginvestors.io/market/sgx-weekly-top-turnover-institutions-retailers-buy-sell/'
-    response = requests.get(url)
-    with open('weekly.html', 'w') as file:
-        file.write(response.text)
-    return response.text
-
-if FILENAME not in os.listdir():
-    content = saveHTML()
-else:
-    ans = input('Overwrite weekly.html? (y/n) ')
-    if ans in ['y', 'Y']:
-        content = saveHTML()
-    else:
-        with open('weekly.html', 'r') as file:
-            content = file.read()
+url = 'https://sginvestors.io/market/sgx-weekly-top-turnover-institutions-retailers-buy-sell/'
+response = requests.get(url)
+with open('weekly.html', 'w') as file:
+    file.write(response.text)
+content = response.text
 
 soup = BeautifulSoup(content, 'html.parser')
 
-if 0:
-    weeklyStocks = soup.find_all('tr', {'class': 'weekly-stock'})
-else:
-    if 1:
-        with open('stocks', 'r') as file:
-            weeklyStocks = file.read().strip().split('\n')
-    else:
-        #                                 *       *       *
-        weeklyStocks = ['K71U', 'JYEU', 'J91U', 'CWBU', 'RW0U']
+weeklyStocks = soup.find_all('tr', {'class': 'weekly-stock'})
+#                                 *       *       *
+# weeklyStocks = ['K71U', 'JYEU', 'J91U', 'CWBU', 'RW0U']
+# weeklyStocks = file.read().strip().split('\n')
 
 if 'stockPrices.csv' not in os.listdir('data'):
     data = {}
