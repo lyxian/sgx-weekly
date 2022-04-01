@@ -25,7 +25,7 @@ else:
 
 soup = BeautifulSoup(content, 'html.parser')
 
-if 0:
+if 1:
     weeklyStocks = soup.find_all('tr', {'class': 'weekly-stock'})
 else:
     if 1:
