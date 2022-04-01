@@ -2,7 +2,8 @@
 
 **USAGE**
 
-- run app.py
+- run following command:
+  > scripts/start.sh
 
 ##Packages (list required packages & run .scripts/init-pip.sh)
 bs4

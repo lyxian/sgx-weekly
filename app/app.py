@@ -40,8 +40,10 @@ if 0:
         )
     ]
 else:
+    # Insert custom ranges here
     RANGES = {
         'X': [1, 3],
+        'Y': [3.5, 5.5],
         'A': [0, 5],
         'B': [5, 15],
         'C': [15, 100],
