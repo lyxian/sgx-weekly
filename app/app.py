@@ -2,8 +2,8 @@ from dash_bootstrap_components import Row, Col, themes
 from dash import Dash, html, dash_table, dcc
 from plotly import graph_objects, express
 
-import weekly
-import postWeekly
+# import weekly
+# import postWeekly
 
 from utils import getFileNameAndData, getMinMaxDf
 
